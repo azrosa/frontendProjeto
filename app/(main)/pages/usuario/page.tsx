@@ -12,7 +12,6 @@ import { classNames } from 'primereact/utils';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Projeto } from '../../../../types/types';
 import { UsuarioService } from '../../../../service/UsuarioService';
-import { error } from 'console';
 
 const Usuario = () => {
     let usuarioVazio: Projeto.Usuario = {
@@ -186,14 +185,6 @@ const Usuario = () => {
 
         setUsuario(_usuario);
     };
-
-    // const onInputNumberChange = (e: InputNumberValueChangeEvent, name: string) => {
-    //     const val = e.value || 0;
-    //     let _product = { ...product };
-    //     _product[`${name}`] = val;
-
-    //     setProduct(_product);
-    // };
 
     const leftToolbarTemplate = () => {
         return (
