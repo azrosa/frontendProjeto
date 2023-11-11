@@ -24,6 +24,6 @@ export class BaseService{
     return axiosInstance.put(this.url, objeto);
   }
   excluir(id: number){
-    return axiosInstance.delete(this.url + id);
+    return axiosInstance.delete(this.url + "/" + id);
   }
 }
