@@ -20,7 +20,7 @@ const Recurso = () => {
         chave: ''
     };
 
-    const [recursos, setRecursos] = useState<Projeto.Recurso[]>([]);
+    const [recursos, setRecursos] = useState<Projeto.Recurso[] | null>(null);
     const [recursoDialog, setRecursoDialog] = useState(false);
     const [deleteRecursoDialog, setDeleteRecursoDialog] = useState(false);
     const [deleteRecursosDialog, setDeleteRecursosDialog] = useState(false);
@@ -33,7 +33,7 @@ const Recurso = () => {
     const recursoService = useMemo(() => new RecursoService(), []);
 
     useEffect(() => {
-        if(recursos.length == 0) {
+        if(!recursos) {
             recursoService.listarTodos()
             .then((response) => {
                 console.log(response.data);
@@ -71,7 +71,7 @@ const Recurso = () => {
                 .then((response) => {
                     setRecursoDialog(false);
                     setRecurso(recursoVazio);
-                    setRecursos([]);
+                    setRecursos(null);
                     toast.current?.show({
                         severity: 'info',
                         summary: 'Sucesso',
@@ -90,7 +90,7 @@ const Recurso = () => {
                .then((response) => {
                     setRecursoDialog(false);
                     setRecurso(recursoVazio);
-                    setRecursos([]);
+                    setRecursos(null);
                     toast.current?.show({
                         severity: 'info',
                         summary: 'Sucesso',
@@ -123,7 +123,7 @@ const Recurso = () => {
               .then((response) => {
                     setDeleteRecursoDialog(false);
                     setRecurso(recursoVazio);
-                    setRecursos([]);
+                    setRecursos(null);
                     toast.current?.show({
                         severity: 'info',
                         summary: 'Sucesso',
@@ -157,7 +157,7 @@ const Recurso = () => {
             })
         ).then(() => {
             setDeleteRecursosDialog(false);
-            setRecursos([]);
+            setRecursos(null);
             setSelectedRecursos([]);
             toast.current?.show({
                 severity: 'info',

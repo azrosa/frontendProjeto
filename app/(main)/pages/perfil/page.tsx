@@ -19,7 +19,7 @@ const Perfil = () => {
         descricao: ''
     };
 
-    const [perfis, setPerfis] = useState<Projeto.Perfil[]>([]);
+    const [perfis, setPerfis] = useState<Projeto.Perfil[] | null>(null);
     const [perfilDialog, setPerfilDialog] = useState(false);
     const [deletePerfilDialog, setDeletePerfilDialog] = useState(false);
     const [deletePerfisDialog, setDeletePerfisDialog] = useState(false);
@@ -32,7 +32,7 @@ const Perfil = () => {
     const perfilService = useMemo(() => new PerfilService(), []);
 
     useEffect(() => {
-        if(perfis.length == 0) {
+        if(!perfis) {
             perfilService.listarTodos()
             .then((response) => {
                 console.log(response.data);
@@ -70,7 +70,7 @@ const Perfil = () => {
                 .then((response) => {
                     setPerfilDialog(false);
                     setPerfil(perfilVazio);
-                    setPerfis([]);
+                    setPerfis(null);
                     toast.current?.show({
                         severity: 'info',
                         summary: 'Sucesso',
@@ -89,7 +89,7 @@ const Perfil = () => {
                .then((response) => {
                     setPerfilDialog(false);
                     setPerfil(perfilVazio);
-                    setPerfis([]);
+                    setPerfis(null);
                     toast.current?.show({
                         severity: 'info',
                         summary: 'Sucesso',
@@ -122,7 +122,7 @@ const Perfil = () => {
               .then((response) => {
                     setDeletePerfilDialog(false);
                     setPerfil(perfilVazio);
-                    setPerfis([]);
+                    setPerfis(null);
                     toast.current?.show({
                         severity: 'info',
                         summary: 'Sucesso',
@@ -156,7 +156,7 @@ const Perfil = () => {
             })
         ).then(() => {
             setDeletePerfisDialog(false);
-            setPerfis([]);
+            setPerfis(null);
             setSelectedPerfis([]);
             toast.current?.show({
                 severity: 'info',
